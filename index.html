@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NZXT Spotify + Stats</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #1e1e1e;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .spotify, .stats {
+      flex: 1;
+      padding: 20px;
+    }
+    .spotify img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .track-info {
+      margin-top: 10px;
+    }
+    .track-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .track-artist {
+      font-size: 16px;
+      color: #ccc;
+    }
+    .stats {
+      text-align: right;
+    }
+    .stat {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="spotify">
+    <img id="album-art" src="https://i.scdn.co/image/ab67616d00001e022f4d4c93c0db4d1b6b3b76a1" alt="Album Art">
+    <div class="track-info">
+      <div class="track-title" id="track-title">Mystery Lady</div>
+      <div class="track-artist" id="track-artist">Don Toliver, Masego</div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat" id="cpu-temp">CPU: 38°C</div>
+    <div class="stat" id="gpu-temp">GPU: 41°C</div>
+    <div class="stat" id="ram-usage">RAM: 52%</div>
+  </div>
+</body>
+</html>
