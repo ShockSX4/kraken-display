@@ -23,8 +23,8 @@
     </div>
 
     <script>
-        const SPOTIFY_CLIENT_ID = be21edb21110404192b644c2ab5d46fd; // Replace with your actual Client ID
-        const REDIRECT_URI = https://shocksx4.github.io/kraken-display/; // Your GitHub Pages URL
+        const SPOTIFY_CLIENT_ID = "be21edb21110404192b644c2ab5d46fd"; // Wrapped in quotes
+        const REDIRECT_URI = "https://shocksx4.github.io/kraken-display/"; // Wrapped in quotes
         let accessToken = "";
 
         function loginSpotify() {
@@ -43,13 +43,17 @@
 
         async function updateSpotify() {
             if (!accessToken) return;
-            const response = await fetch("https://api.spotify.com/v1/me/player/currently-playing", {
-                headers: { "Authorization": `Bearer ${accessToken}` }
-            });
-            const data = await response.json();
-            if (data && data.item) {
-                document.getElementById("songInfo").innerText = `🎵 ${data.item.name} - ${data.item.artists[0].name}`;
-                document.getElementById("albumArt").src = data.item.album.images[0].url;
+            try {
+                const response = await fetch("https://api.spotify.com/v1/me/player/currently-playing", {
+                    headers: { "Authorization": `Bearer ${accessToken}` }
+                });
+                const data = await response.json();
+                if (data && data.item) {
+                    document.getElementById("songInfo").innerText = `🎵 ${data.item.name} - ${data.item.artists[0].name}`;
+                    document.getElementById("albumArt").src = data.item.album.images[0].url;
+                }
+            } catch (error) {
+                console.error("Error fetching Spotify data:", error);
             }
         }
 
@@ -58,11 +62,15 @@
         }
 
         async function updateWeather() {
-            const city = 'Chicago';
-            const apiKey = bb179c580aca6eccaea08ed6c964d769;
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`);
-            const data = await response.json();
-            document.getElementById('weather').innerText = `🌤️ ${data.weather[0].description}, ${data.main.temp}°F`;
+            const city = "Chicago";
+            const apiKey = "bb179c580aca6eccaea08ed6c964d769"; // Wrapped in quotes
+            try {
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`);
+                const data = await response.json();
+                document.getElementById('weather').innerText = `🌤️ ${data.weather[0].description}, ${data.main.temp}°F`;
+            } catch (error) {
+                console.error("Error fetching weather data:", error);
+            }
         }
 
         async function updatePCStats() {
